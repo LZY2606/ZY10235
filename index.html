@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>翼形共识室</title>
+    <link rel="stylesheet" href="/src/client/style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>翼形共识室</h1>
+      <div class="subtitle">
+        昆虫翅脉交点 · 多版本定位叠加 · 显式镜像 Procrustes 共识
+      </div>
+      <div class="top-actions">
+        <button id="btn-refresh" type="button">刷新数据</button>
+        <button id="btn-export" type="button">导出记录(JSON)</button>
+        <label class="file-btn">
+          清空并导入复核
+          <input id="file-import" type="file" accept="application/json" hidden />
+        </label>
+        <button id="btn-reset" type="button" class="danger">重置为 fixture</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="panel sidebar">
+        <section>
+          <h2>样本 / 操作者版本</h2>
+          <div id="sample-list" class="sample-list"></div>
+        </section>
+        <section>
+          <h2>共识运行</h2>
+          <label class="mirror-line">
+            <input id="chk-mirror" type="checkbox" />
+            <span>显式镜像右翅（mirrorRight）</span>
+          </label>
+          <p class="hint" id="mirror-hint">
+            镜像必须显式启用；关闭时对齐只用平移 / 缩放 / 旋转（det = +1）。
+          </p>
+          <div class="run-actions">
+            <button id="btn-run-mirror-off" type="button">运行（不含对称）</button>
+            <button id="btn-run-mirror-on" type="button" class="primary">运行（含对称）</button>
+          </div>
+          <h3>历史运行（可比较两分支）</h3>
+          <div id="run-list" class="run-list"></div>
+        </section>
+      </aside>
+
+      <section class="panel canvas-panel">
+        <div class="canvas-row">
+          <div class="canvas-box">
+            <h2>原始空间：多版本定位叠加</h2>
+            <canvas id="raw-canvas" width="520" height="420"></canvas>
+            <div id="raw-legend" class="legend"></div>
+          </div>
+          <div class="canvas-box">
+            <h2>共识空间：GPA 对齐 / 点级方差</h2>
+            <canvas id="gpa-canvas" width="520" height="420"></canvas>
+            <div id="gpa-legend" class="legend"></div>
+          </div>
+        </div>
+        <div id="ambiguity-banner" class="banner hidden"></div>
+        <div id="residual-table" class="residual-table"></div>
+      </section>
+    </main>
+
+    <script type="module" src="/src/client/main.ts"></script>
+  </body>
+</html>

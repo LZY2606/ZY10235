@@ -34,3 +34,8 @@ coverage/
 .vite/
 .turbo/
 *.tsbuildinfo
+
+# SQLite 本地数据库（fixture 可随时重建）
+data/*.db
+data/*.db-shm
+data/*.db-wal

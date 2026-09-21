@@ -1,0 +1,24 @@
+{
+  "name": "wing-consensus-chamber",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "翼形共识室 — insect wing venation landmark consensus with explicit-mirror Procrustes/GPA",
+  "scripts": {
+    "dev": "tsx src/server/server.ts",
+    "start": "tsx src/server/server.ts",
+    "build": "vite build",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "better-sqlite3": "^13.0.3"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.0",
+    "vitest": "^3.0.0"
+  }
+}
