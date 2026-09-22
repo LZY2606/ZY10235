@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>翼形共识室</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>翼形共识室</h1>
+      <div class="sub">昆虫翅脉交点 · 多操作者定位 · 显式镜像 · Procrustes 共识</div>
+    </header>
+
+    <main class="layout">
+      <section class="panel canvas-panel">
+        <div class="panel-head">
+          <h2>叠加视图</h2>
+          <div class="layer-toggles">
+            <label><input type="checkbox" id="layerRaw" checked /> 原始定位版本</label>
+            <label><input type="checkbox" id="layerAligned" checked /> 对齐后版本</label>
+            <label><input type="checkbox" id="layerConsensus" checked /> 共识形状</label>
+            <label><input type="checkbox" id="layerVariance" checked /> 点级方差</label>
+            <label><input type="checkbox" id="layerExcluded" checked /> 排除样本</label>
+          </div>
+        </div>
+        <canvas id="board" width="820" height="620"></canvas>
+        <div id="legend" class="legend"></div>
+      </section>
+
+      <aside class="panel side-panel">
+        <h2>共识运行</h2>
+        <div class="control">
+          <span class="control-label">镜像假设（右翅先关于 y 轴翻转）</span>
+          <div class="mirror-row">
+            <label><input type="radio" name="mirror" value="true" /> 显式启用镜像</label>
+            <label><input type="radio" name="mirror" value="false" /> 不镜像</label>
+          </div>
+          <div class="hint">镜像必须显式选择；对齐自身只允许平移/缩放/旋转（det R = +1）。</div>
+        </div>
+
+        <div class="control">
+          <button id="runBtn" class="primary">运行共识（GPA）</button>
+          <span id="runStatus" class="status"></span>
+        </div>
+
+        <div class="control">
+          <span class="control-label">历史运行（含/不含对称分支对比）</span>
+          <select id="runSelect" size="5"></select>
+        </div>
+
+        <div class="control">
+          <span class="control-label">数据与重放</span>
+          <div class="btn-row">
+            <button id="exportBtn">导出运行记录</button>
+            <button id="importBtn">清空并重新导入</button>
+            <input type="file" id="importFile" accept="application/json,.json" hidden />
+            <button id="reseedBtn">重置固定 fixture</button>
+          </div>
+          <div class="hint">导出包可在清空数据库后重新导入复核；命令行重放见 README。</div>
+        </div>
+
+        <div id="runMeta" class="run-meta"></div>
+      </aside>
+    </main>
+
+    <section class="panel">
+      <h2>样本、操作者版本与点对应</h2>
+      <div id="configTable"></div>
+    </section>
+
+    <section class="panel">
+      <h2>运行说明与非唯一性报告</h2>
+      <ul id="notesList" class="notes"></ul>
+    </section>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
